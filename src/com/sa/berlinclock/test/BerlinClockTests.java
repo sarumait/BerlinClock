@@ -3,31 +3,37 @@ package com.sa.berlinclock.test;
 
 import static org.junit.Assert.*;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import com.sa.berlinclock.BerlinClock;
 
 public class BerlinClockTests 
 {
+	private BerlinClock _clock;
+
+	@Before
+	public void setUp()
+	{
+		_clock = new BerlinClock();
+	}
+	
 	@Test
 	public void test_00_00_00()
 	{
-		BerlinClock clock = new BerlinClock();
-		assertEquals("Y OOOO OOOO OOOOOOOOOOO OOOO", clock.showTime(0, 0, 0));
+		assertEquals("Y OOOO OOOO OOOOOOOOOOO OOOO", _clock.showTime(0, 0, 0));
 	}
 	
 	@Test
 	public void test_13_17_01()
 	{
-		BerlinClock clock = new BerlinClock();
-		assertEquals("O RROO RRRO YYROOOOOOOO YYOO", clock.showTime(13, 17, 1));
+		assertEquals("O RROO RRRO YYROOOOOOOO YYOO", _clock.showTime(13, 17, 1));
 	}
 	
 	@Test
 	public void test_23_59_59()
 	{
-		BerlinClock clock = new BerlinClock();
-		assertEquals("O RRRR RRRO YYRYYRYYRYY YYYY", clock.showTime(23, 59, 59));
+		assertEquals("O RRRR RRRO YYRYYRYYRYY YYYY", _clock.showTime(23, 59, 59));
 	}
 	
 	/*
@@ -36,7 +42,6 @@ public class BerlinClockTests
 	@Test
 	public void test_24_00_00()
 	{
-		BerlinClock clock = new BerlinClock();
-		assertEquals("Y RRRR RRRR OOOOOOOOOOO OOOO", clock.showTime(24, 00, 00));
+		assertEquals("Y RRRR RRRR OOOOOOOOOOO OOOO", _clock.showTime(24, 00, 00));
 	}
 }
