@@ -4,107 +4,110 @@ public class BerlinClock
 {
 	public String showTime(int hour, int minutes, int seconds)
 	{		
-		String secondsLamp = "O";
+		String secondsLamp = getSecondsLamp(seconds);
+		String fiveHourLightRow = getFiveHourLightRow(hour);
+		String oneHourLightRow = getOneHourLightRow(hour);
+		String fifteenMinuteLightRow = getFifteenMinuteLightRow(minutes);
+		String oneMinuteLightRow = getOneMinuteLightRow(minutes);
+		
+		return secondsLamp + " " + fiveHourLightRow + " " + oneHourLightRow + " " + fifteenMinuteLightRow + " " + oneMinuteLightRow;
+	}
+	
+	private String getSecondsLamp(int seconds) 
+	{
 		if(seconds % 2 == 0)
-			secondsLamp = "Y";
-		
-		String fiveHourRow;
-		int howManyFiveHours = hour /5;
-		switch(howManyFiveHours)
+		{
+			return "Y";
+		}
+		else
+		{
+			return "O";
+		}
+	}
+	
+	private String getFiveHourLightRow(int hour) 
+	{
+		int howManyFiveHourLightsShouldShow = hour /5;
+		switch(howManyFiveHourLightsShouldShow)
 		{
 			case 0:
-				fiveHourRow = "OOOO";
-				break;
+				return "OOOO";
 			case 1:
-				fiveHourRow = "ROOO";
-				break;
+				return "ROOO";
 			case 2:
-				fiveHourRow = "RROO";
-				break;
+				return "RROO";
 			case 3:
-				fiveHourRow = "RRRO";
-				break;
+				return "RRRO";
 			default:
-				fiveHourRow = "RRRR";
-				break;
+				return "RRRR";
 		}
-		
-		String oneHourRow;
-		int howManyOneHours = hour % 5;
-		switch(howManyOneHours)
+	}
+
+	private String getOneHourLightRow(int hour) 
+	{
+		int howManyOneHourLightShouldShow = hour % 5;
+		switch(howManyOneHourLightShouldShow)
 		{
 			case 0:
-				oneHourRow = "OOOO";
-				break;
+				return "OOOO";
 			case 1:
-				oneHourRow = "ROOO";
-				break;
+				return "ROOO";
 			case 2:
-				oneHourRow = "RROO";
-				break;
+				return "RROO";
 			case 3:
-				oneHourRow = "RRRO";
+				return "RRRO";
+			default:
+				return "RRRR";
+		}
+	}
+
+	private String getFifteenMinuteLightRow(int minutes)
+	{
+		String tenMinuteLightSegment;
+		int howManyFiveMinuteLightSegmentsShown = (minutes % 15) / 5;
+		switch(howManyFiveMinuteLightSegmentsShown)
+		{
+			case 0:
+				tenMinuteLightSegment = "OO";
+				break;
+			case 1:
+				tenMinuteLightSegment = "YO";
 				break;
 			default:
-				oneHourRow = "RRRR";
+				tenMinuteLightSegment = "YY";
 				break;
 		}
 		
-		String fiveMinutes;
-		int howManyFiveMinutes = (minutes % 15) / 5;
-		switch(howManyFiveMinutes)
+		
+		int howManyFifteenMinuteSegmentsShown = minutes / 15;
+		switch (howManyFifteenMinuteSegmentsShown) 
 		{
 			case 0:
-				fiveMinutes = "OO";
-				break;
+				return tenMinuteLightSegment + "OOOOOOOOO";
 			case 1:
-				fiveMinutes = "YO";
-				break;
-			default:
-				fiveMinutes = "YY";
-				break;
-		}
-		
-		
-		String fiveMinuteRow;
-		int howManyFifteenMinutes = minutes / 15;
-		switch (howManyFifteenMinutes) 
-		{
-			case 0:
-				fiveMinuteRow = fiveMinutes + "OOOOOOOOO";
-				break;
-			case 1:
-				fiveMinuteRow = "YYR" + fiveMinutes + "OOOOOO";
-				break;
+				return "YYR" + tenMinuteLightSegment + "OOOOOO";
 			case 2:
-				fiveMinuteRow = "YYRYYR" + fiveMinutes + "OOO";
-				break;
+				return "YYRYYR" + tenMinuteLightSegment + "OOO";
 			default:
-				fiveMinuteRow = "YYRYYRYYR" + fiveMinutes;
-				break;
+				return "YYRYYRYYR" + tenMinuteLightSegment;
 		}
-		
-		String oneMinuteRow;
+	}
+
+	private String getOneMinuteLightRow(int minutes) 
+	{
 		int howManyOneMinutes = minutes % 5;
 		switch (howManyOneMinutes) 
 		{
 			case 0:
-				oneMinuteRow = "OOOO";
-				break;
+				return "OOOO";
 			case 1:
-				oneMinuteRow = "YOOO";
-				break;
+				return "YOOO";
 			case 2:
-				oneMinuteRow = "YYOO";
-				break;
+				return "YYOO";
 			case 3:
-				oneMinuteRow = "YYYO";
-				break;
+				return "YYYO";
 			default:
-				oneMinuteRow= "YYYY";
-				break;
+				return "YYYY";
 		}
-		
-		return secondsLamp + " " + fiveHourRow + " " + oneHourRow + " " + fiveMinuteRow + " " + oneMinuteRow;
 	}
 }
