@@ -1,5 +1,4 @@
-package com.sa.berlinclock.test;
-
+package com.sa.berlinclock;
 
 import static org.junit.Assert.*;
 
@@ -8,7 +7,7 @@ import org.junit.Test;
 
 import com.sa.berlinclock.BerlinClock;
 
-public class BerlinClockTests 
+public class BerlinClockTest 
 {
 	private BerlinClock _clock;
 
